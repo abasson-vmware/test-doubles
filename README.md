@@ -28,6 +28,8 @@ There are five kinds of test doubles:
 - Mock
 - Fake
 
+We'll describe each one below and include an example to show how it might be used.
+
 ## Dummy
 
 ### What is it?
