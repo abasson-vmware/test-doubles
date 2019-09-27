@@ -1,5 +1,23 @@
 # Test Doubles
 
+## Why use test doubles?
+
+You want to test some code. In particular, you want to write some automated unit tests that determine whether the code you're testing behaves as you intend. That means you want to test the outputs of your code along with any side effects you might want it to have.
+
+But that code depends on other code–it has *dependencies*. Perhaps it gets some inputs from some data sources; perhaps it sends its outputs to some destinations. Na matter how your code interacts with its dependencies, however, you want to make sure that its tests reflect its behavior; i.e. if the code is correct, its tests will pass, and if the code isn't correct, its tests will fail.
+
+In other words, you want the code's tests to pass or fail based only on the behavior of the code you're testing, and not on the behavior of the other components it depends on.
+
+This means you want **test doubles**. Test doubles are stand-ins—they get their name from the "stunt doubles" who stand in for the big-name actors in movies—and they allow you to control the inputs into your code and to inspect how your code interacts with them.
+
+Consider the diagram below. Here, the code being tested gets data from two data sources, adds them together, and sends the output to another dependency.
+
+![test doubles](./TestDoubles.png)
+
+When writing the tests for this code, we want to be able to control the inputs, so that we have predictable, known conditions under which we can test the code. For example, we might want to set things up such that when our code calls `getX()`, `DataSource A` returns `3`, and when our code calls `getY()`, `DataSource B` returns `5`. And we want to know that when our code calls `setOutput()`, it passes the value `8` to `Dependency C`.
+
+Creating and injecting test doubles for `DataSource A`, `DataSource B`, and `Dependency C` allow us to do just this.
+
 ## Types of Test Doubles
 
 There are five kinds of test doubles:
