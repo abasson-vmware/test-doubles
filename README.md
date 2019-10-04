@@ -2,9 +2,9 @@
 
 ## Why use test doubles?
 
-You want to test some code. In particular, you want to write some automated unit tests that determine whether the code you're testing behaves as you intend. That means you want to test the outputs of your code along with any side effects you might want it to have.
+**Test doubles** help you write better unit tests. They do this by helping you to isolate the behavior of the code you're testing from the behavior of the components that code depends on.
 
-But that code depends on other code–it has *dependencies*. Perhaps it gets some inputs from some data sources; perhaps it sends its outputs to some destinations. Na matter how your code interacts with its dependencies, however, you want to make sure that its tests reflect its behavior; i.e. if the code is correct, its tests will pass, and if the code isn't correct, its tests will fail.
+Much of the time, the code you want to test will depend on other code—it has *dependencies*. Perhaps it gets some inputs from some data sources; perhaps it sends its outputs to some destinations. No matter how your code interacts with its dependencies, however, you want to make sure that its tests reflect only its behavior and not the behavior of its dependencies. And you want to avoid getting false positives or false negatives from your tests.
 
 In other words, you want the code's tests to pass or fail based only on the behavior of the code you're testing, and not on the behavior of the other components it depends on.
 
@@ -14,11 +14,11 @@ Consider the diagram below. Here, the code being tested gets data from two data 
 
 ![test doubles](./TestDoubles.png)
 
-When writing the tests for this code, we want to be able to control the inputs, so that we have predictable, known conditions under which we can test the code. For example, we might want to set things up such that when our code calls `getX()`, `DataSource A` returns `3`, and when our code calls `getY()`, `DataSource B` returns `5`. And we want to know that when our code calls `setOutput()`, it passes the value `8` to `Dependency C`.
+When writing the tests for this code, we want to be able to control the inputs, so that we have predictable, known conditions under which we can test the code. For example, we might want to set things up such that when our code calls `getX()`, `dataSourceA` returns `3`, and when our code calls `getY()`, `dataSourceB` returns `5`. And we want to know that when our code calls `setOutput()`, it passes the value `8` to `dependencyC`.
 
-Creating and injecting test doubles for `DataSource A`, `DataSource B`, and `Dependency C` allow us to do just this.
+Creating and injecting test doubles for `dataSourceA`, `dataSourceB`, and `dependencyC` allow us to do just this.
 
-## Types of Test Doubles
+## The Five Types of Test Doubles
 
 There are five kinds of test doubles:
 
