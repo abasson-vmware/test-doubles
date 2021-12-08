@@ -298,7 +298,7 @@ Which test double should you use for `BankAccount`?
 - You could use a spy to ensure that `deposit()` or `withdraw()` are called with the correct amount, but that doesn't resolve the problem with stubbing `getBalance()`.
 - The problem with a mock is the same as the problem with a stub.
 
-In fact, the problem with using any of these test doubles with `BankAccount` is that `BankAccount` has *stateful behavior*, i.e. that `getBalance()` will return different amounts depending on the other methods—`deposit()` and/or `withdraw()` that get called. We need to make sure that whatever test double we use for `BankAccount` in our `Accountant` tests, that test double *behaves like a `BankAccount`*.
+In fact, the problem with using any of these test doubles with `BankAccount` is that `BankAccount` has *stateful behavior*, i.e. that `getBalance()` will return different amounts depending on the other methods—`deposit()` and/or `withdraw()`—that get called. We need to make sure that whatever test double we use for `BankAccount` in our `Accountant` tests, that test double *behaves like a `BankAccount`*.
 
 #### What does it mean to behave like a `BankAccount`?
 
@@ -345,11 +345,11 @@ function testBankAccount(createBankAccount: () => BankAccount) {
 }
 ```
 
-Notice that `testBankAccount` has no opinions as to what kind of `BankAccount` it is testing, only that the `BankAccount` it receives implements the `BankAccount` interface.
+Notice that `testBankAccount` has no opinions as to what kind of `BankAccount` it is testing, only that the `BankAccount` it receives implements the `BankAccount` interface. As far as `Accountant` is concerned, *any* instance of `BankAccount` that has the behavior described in the `BankAccount` test will serve its purposes. If we can create a `BankAccount` implementation that has the stateful behavior described by `testBankAccount`, we can use it in our `Accountant` tests.
 
-As far as `Accountant` is concerned, *any* instance of `BankAccount` that has the behavior described in the `BankAccount` test will serve its purposes. If we can create a `BankAccount` implementation that has the stateful behavior described by `testBankAccount`, we can use it in our `Accountant` tests.
+It's worth emphasizing this point: **"To behave like a `BankAccount`" means precisely "to pass the `BankAccount` tests".**
 
-This means we can have two different implementations of `BankAccount`, one real and one fake:
+Any class, in other words, that passes the tests described in `testBankAccount` can be said to behave like a `BankAccount`. This means we can have two different implementations of `BankAccount`, one real and one fake:
 
 #### RealBankAccount
 
