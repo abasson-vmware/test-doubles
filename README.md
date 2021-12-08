@@ -22,11 +22,11 @@ Creating and injecting test doubles for `dataSourceA`, `dataSourceB`, and `depen
 
 There are five kinds of test doubles:
 
-- Dummy
-- Stub
-- Spy
-- Mock
-- Fake
+- [Dummy](#dummy)
+- [Stub](#stub)
+- [Spy](#spy)
+- [Mock](#mock)
+- [Fake](#fake)
 
 We'll describe each one below and include an example to show how it might be used.
 
