@@ -12,7 +12,7 @@ This means you want **test doubles**. Test doubles are stand-ins—they get thei
 
 Consider the diagram below. Here, the code being tested gets data from two data sources, adds them together, and sends the output to another dependency.
 
-![test doubles](./TestDoubles.png)
+![test doubles](./TestDoubles.jpg)
 
 When writing the tests for this code, we want to be able to control the inputs, so that we have predictable, known conditions under which we can test the code. For example, we might want to set things up such that when our code calls `getX()`, `dataSourceA` returns `3`, and when our code calls `getY()`, `dataSourceB` returns `5`. And we want to know that when our code calls `setOutput()`, it passes the value `8` to `dependencyC`.
 
